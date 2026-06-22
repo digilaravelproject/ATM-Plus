@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_kiosk">
+
+    <!-- Common Background Elements (Plant and Powered By) -->
+    <include layout="@layout/kiosk_background" />
+
+
+
+    <!-- Content Card Area -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/content_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.6"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="20dp">
+
+            <!-- Left Column: Title & Description -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingEnd="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Additional Info"
+                    android:textColor="@color/primary_blue_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Please select your preferences for additional banking services and features."
+                    android:textColor="@color/grey_text"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <!-- Divider -->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#E2E8F0" />
+
+            <!-- Right Column: Preferences Scroll Container -->
+            <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:fillViewport="true"
+                android:scrollbars="vertical"
+                android:fadeScrollbars="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:paddingStart="12dp"
+                    android:orientation="vertical">
+
+                    <!-- 1. Gender -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingEnd="8dp"
+                            android:text="Gender"
+                            android:textColor="@color/primary_blue_dark"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.button.MaterialButtonToggleGroup
+                            android:id="@+id/toggle_group_gender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:singleSelection="true"
+                            app:selectionRequired="true">
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_gender_male"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:minWidth="32dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:paddingHorizontal="4dp"
+                                android:paddingVertical="0dp"
+                                android:text="Male"
+                                android:textColor="@color/toggle_btn_text"
+                                android:textSize="9sp"
+                                app:backgroundTint="@color/toggle_btn_bg"
+                                app:strokeColor="@color/toggle_btn_stroke"
+                                app:strokeWidth="0.5dp" />
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_gender_female"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:minWidth="32dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:paddingHorizontal="4dp"
+                                android:paddingVertical="0dp"
+                                android:text="Female"
+                                android:textColor="@color/toggle_btn_text"
+                                android:textSize="9sp"
+                                app:backgroundTint="@color/toggle_btn_bg"
+                                app:strokeColor="@color/toggle_btn_stroke"
+                                app:strokeWidth="0.5dp" />
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_gender_other"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:minWidth="32dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:paddingHorizontal="4dp"
+                                android:paddingVertical="0dp"
+                                android:text="Other"
+                                android:textColor="@color/toggle_btn_text"
+                                android:textSize="9sp"
+                                app:backgroundTint="@color/toggle_btn_bg"
+                                app:strokeColor="@color/toggle_btn_stroke"
+                                app:strokeWidth="0.5dp" />
+                        </com.google.android.material.button.MaterialButtonToggleGroup>
+                    </LinearLayout>
+
+                    <!-- 2. Passbook Required -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Passbook Required?"
+                            android:textColor="@color/primary_blue_dark"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:paddingEnd="8dp" />
+
+                        <com.google.android.material.button.MaterialButtonToggleGroup
+                            android:id="@+id/toggle_group_passbook"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:singleSelection="true"
+                            app:selectionRequired="true">
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_passbook_yes"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:minWidth="32dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:paddingHorizontal="4dp"
+                                android:paddingVertical="0dp"
+                                android:text="Yes"
+                                android:textColor="@color/toggle_btn_text"
+                                android:textSize="9sp"
+                                app:backgroundTint="@color/toggle_btn_bg"
+                                app:strokeColor="@color/toggle_btn_stroke"
+                                app:strokeWidth="0.5dp" />
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_passbook_no"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:minWidth="32dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:paddingHorizontal="4dp"
+                                android:paddingVertical="0dp"
+                                android:text="No"
+                                android:textColor="@color/toggle_btn_text"
+                                android:textSize="9sp"
+                                app:backgroundTint="@color/toggle_btn_bg"
+                                app:strokeColor="@color/toggle_btn_stroke"
+                                app:strokeWidth="0.5dp" />
+                        </com.google.android.material.button.MaterialButtonToggleGroup>
+                    </LinearLayout>
+
+                    <!-- 3. Debit Card Required -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Debit Card Required?"
+                            android:textColor="@color/primary_blue_dark"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:paddingEnd="8dp" />
+
+                        <com.google.android.material.button.MaterialButtonToggleGroup
+                            android:id="@+id/toggle_group_debit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:singleSelection="true"
+                            app:selectionRequired="true">
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_debit_yes"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:minWidth="32dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:paddingHorizontal="4dp"
+                                android:paddingVertical="0dp"
+                                android:text="Yes"
+                                android:textColor="@color/toggle_btn_text"
+                                android:textSize="9sp"
+                                app:backgroundTint="@color/toggle_btn_bg"
+                                app:strokeColor="@color/toggle_btn_stroke"
+                                app:strokeWidth="0.5dp" />
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_debit_no"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:minWidth="32dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:paddingHorizontal="4dp"
+                                android:paddingVertical="0dp"
+                                android:text="No"
+                                android:textColor="@color/toggle_btn_text"
+                                android:textSize="9sp"
+                                app:backgroundTint="@color/toggle_btn_bg"
+                                app:strokeColor="@color/toggle_btn_stroke"
+                                app:strokeWidth="0.5dp" />
+                        </com.google.android.material.button.MaterialButtonToggleGroup>
+                    </LinearLayout>
+
+                    <!-- 4. Internet Banking Required -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Internet Banking?"
+                            android:textColor="@color/primary_blue_dark"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:paddingEnd="8dp" />
+
+                        <com.google.android.material.button.MaterialButtonToggleGroup
+                            android:id="@+id/toggle_group_internet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:singleSelection="true"
+                            app:selectionRequired="true">
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_internet_yes"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:minWidth="32dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:paddingHorizontal="4dp"
+                                android:paddingVertical="0dp"
+                                android:text="Yes"
+                                android:textColor="@color/toggle_btn_text"
+                                android:textSize="9sp"
+                                app:backgroundTint="@color/toggle_btn_bg"
+                                app:strokeColor="@color/toggle_btn_stroke"
+                                app:strokeWidth="0.5dp" />
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_internet_no"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:minWidth="32dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:paddingHorizontal="4dp"
+                                android:paddingVertical="0dp"
+                                android:text="No"
+                                android:textColor="@color/toggle_btn_text"
+                                android:textSize="9sp"
+                                app:backgroundTint="@color/toggle_btn_bg"
+                                app:strokeColor="@color/toggle_btn_stroke"
+                                app:strokeWidth="0.5dp" />
+                        </com.google.android.material.button.MaterialButtonToggleGroup>
+                    </LinearLayout>
+
+                    <!-- 5. Mobile Banking Required -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Mobile Banking?"
+                            android:textColor="@color/primary_blue_dark"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:paddingEnd="8dp" />
+
+                        <com.google.android.material.button.MaterialButtonToggleGroup
+                            android:id="@+id/toggle_group_mobile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:singleSelection="true"
+                            app:selectionRequired="true">
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_mobile_yes"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:minWidth="32dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:paddingHorizontal="4dp"
+                                android:paddingVertical="0dp"
+                                android:text="Yes"
+                                android:textColor="@color/toggle_btn_text"
+                                android:textSize="9sp"
+                                app:backgroundTint="@color/toggle_btn_bg"
+                                app:strokeColor="@color/toggle_btn_stroke"
+                                app:strokeWidth="0.5dp" />
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_mobile_no"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:minWidth="32dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:paddingHorizontal="4dp"
+                                android:paddingVertical="0dp"
+                                android:text="No"
+                                android:textColor="@color/toggle_btn_text"
+                                android:textSize="9sp"
+                                app:backgroundTint="@color/toggle_btn_bg"
+                                app:strokeColor="@color/toggle_btn_stroke"
+                                app:strokeWidth="0.5dp" />
+                        </com.google.android.material.button.MaterialButtonToggleGroup>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Bottom Bar -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:paddingHorizontal="24dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Back to Success Button (Now Home) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_previous"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:paddingHorizontal="8dp"
+            android:text="@string/home"
+            android:textColor="@color/primary_blue"
+            android:textSize="15sp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/ic_home"
+            app:iconTint="@color/primary_blue"
+            app:iconGravity="textStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/primary_blue"
+            app:strokeWidth="1.5dp" />
+
+        <!-- Submit Preferences Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_submit"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:paddingHorizontal="8dp"
+            android:text="@string/submit"
+            android:textColor="@color/primary_blue"
+            android:textSize="15sp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:strokeColor="@color/primary_blue"
+            app:strokeWidth="1.5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

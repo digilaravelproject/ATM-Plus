@@ -1,0 +1,53 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="80dp"
+    android:viewportWidth="120"
+    android:viewportHeight="80">
+    <!-- Credit Card Base -->
+    <path
+        android:pathData="M8,5 H112 C116.4,5 120,8.6 120,13 V67 C120,71.4 116.4,75 112,75 H8 C3.6,75 0,71.4 0,67 V13 C0,8.6 3.6,5 8,5 Z"
+        android:fillColor="#0A429B"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"/>
+    <!-- Card Chip -->
+    <path
+        android:pathData="M14,24 H28 V38 H14 Z"
+        android:fillColor="#FFD54F"
+        android:strokeColor="#0A429B"
+        android:strokeWidth="1"/>
+    <!-- Chip details -->
+    <path
+        android:pathData="M21,24 V38 M14,31 H28"
+        android:strokeColor="#0A429B"
+        android:strokeWidth="0.8"/>
+    <!-- Contactless logo -->
+    <path
+        android:pathData="M36,26 A6,6 0 0,1 36,36 M40,23 A10,10 0 0,1 40,39"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"/>
+    <!-- Card Number placeholders -->
+    <path
+        android:pathData="M14,50 H46 M54,50 H86 M94,50 H106"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round"/>
+    <!-- Card Holder & Expiry placeholders -->
+    <path
+        android:pathData="M14,64 H36 M86,64 H98"
+        android:strokeColor="#B8D3F5"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"/>
+    <!-- Security Shield Overlay at Bottom Right -->
+    <path
+        android:pathData="M98,40 L84,45 V55 C84,62 89,68 98,70 C107,68 112,62 112,55 V45 Z"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#0A429B"
+        android:strokeWidth="2.5"/>
+    <path
+        android:pathData="M93,55 L96.5,58.5 L103,52"
+        android:strokeColor="#4CAF50"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+</vector>

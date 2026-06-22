@@ -1,0 +1,59 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="150dp"
+    android:viewportWidth="120"
+    android:viewportHeight="150">
+
+    <!-- Plant Pot -->
+    <!-- Base Trapezoid Pot -->
+    <path
+        android:pathData="M35,110 L85,110 L95,145 L25,145 Z"
+        android:fillColor="#D7CCC8" /> <!-- light brown -->
+    <!-- Rim of the pot -->
+    <path
+        android:pathData="M20,105 L100,105 L100,110 L20,110 Z"
+        android:fillColor="#BCAAA4" /> <!-- medium brown shadow -->
+    <!-- Soil -->
+    <path
+        android:pathData="M22,105 C22,105 40,102 60,102 C80,102 98,105 98,105 Z"
+        android:fillColor="#8D6E63" />
+
+    <!-- Stems and Leaves -->
+    <!-- Center Stem & Leaf -->
+    <path
+        android:pathData="M60,105 Q60,60 60,20 Q65,10 60,0 Q55,10 60,20 Z"
+        android:fillColor="#388E3C" />
+    <path
+        android:pathData="M60,60 Q55,40 40,30 Q35,25 30,30 Q35,45 55,55 Z"
+        android:fillColor="#4CAF50" />
+    <path
+        android:pathData="M60,60 Q65,40 80,30 Q85,25 90,30 Q85,45 65,55 Z"
+        android:fillColor="#4CAF50" />
+
+    <!-- Left stem & leaves -->
+    <path
+        android:pathData="M60,105 Q45,75 30,50"
+        android:strokeColor="#2E7D32"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"/>
+    <path
+        android:pathData="M30,50 Q20,40 10,42 Q8,45 15,55 Q25,60 30,50 Z"
+        android:fillColor="#43A047" />
+    <path
+        android:pathData="M42,75 Q32,68 25,75 Q23,80 32,85 Q40,83 42,75 Z"
+        android:fillColor="#4CAF50" />
+
+    <!-- Right stem & leaves -->
+    <path
+        android:pathData="M60,105 Q75,75 90,50"
+        android:strokeColor="#2E7D32"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"/>
+    <path
+        android:pathData="M90,50 Q100,40 110,42 Q112,45 105,55 Q95,60 90,50 Z"
+        android:fillColor="#43A047" />
+    <path
+        android:pathData="M78,75 Q88,68 95,75 Q97,80 88,85 Q80,83 78,75 Z"
+        android:fillColor="#4CAF50" />
+
+</vector>

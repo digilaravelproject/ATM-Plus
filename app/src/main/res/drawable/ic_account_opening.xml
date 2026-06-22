@@ -1,0 +1,27 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- Card Frame -->
+    <path
+        android:pathData="M6,8 H34 C36.2,8 38,9.8 38,12 V36 C38,38.2 36.2,40 34,40 H6 C3.8,40 2,38.2 2,36 V12 C2,9.8 3.8,8 6,8 Z"
+        android:fillColor="#E9F0FA"
+        android:strokeColor="#0A429B"
+        android:strokeWidth="2"/>
+    <!-- Profile Silhouette -->
+    <!-- Head -->
+    <path
+        android:pathData="M20,20 C22.2,20 24,18.2 24,16 C24,13.8 22.2,12 20,12 C17.8,12 16,13.8 16,16 C16,18.2 17.8,20 20,20 Z"
+        android:fillColor="#0A429B"/>
+    <!-- Shoulders -->
+    <path
+        android:pathData="M12,30 C12,25.6 15.6,22 20,22 C24.4,22 28,25.6 28,30 V32 H12 Z"
+        android:fillColor="#0A429B"/>
+    <!-- Pencil -->
+    <path
+        android:pathData="M44,14 L40,10 L28,22 V26 H32 Z"
+        android:fillColor="#FF9800"
+        android:strokeColor="#0A429B"
+        android:strokeWidth="1.5"/>
+</vector>

@@ -1,0 +1,34 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- Cheque Card -->
+    <path
+        android:pathData="M4,10 H44 V38 H4 Z"
+        android:fillColor="#E9F0FA"
+        android:strokeColor="#0A429B"
+        android:strokeWidth="2"/>
+    <!-- Cheque Fields -->
+    <path
+        android:pathData="M8,14 H20"
+        android:strokeColor="#0A429B"
+        android:strokeWidth="2"/>
+    <path
+        android:pathData="M8,20 H32"
+        android:strokeColor="#666666"
+        android:strokeWidth="1.5"/>
+    <path
+        android:pathData="M34,18 H40 V24 H34 Z"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#0A429B"
+        android:strokeWidth="1.5"/>
+    <path
+        android:pathData="M30,32 H40"
+        android:strokeColor="#666666"
+        android:strokeWidth="1.5"/>
+    <path
+        android:pathData="M8,32 H24"
+        android:strokeColor="#0A429B"
+        android:strokeWidth="2"/>
+</vector>

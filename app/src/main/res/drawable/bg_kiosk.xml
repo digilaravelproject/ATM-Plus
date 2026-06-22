@@ -1,0 +1,56 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="1024dp"
+    android:height="1280dp"
+    android:viewportWidth="1024"
+    android:viewportHeight="1280">
+
+    <!-- Base Gradient Background -->
+    <path
+        android:pathData="M0,0 h1024 v1280 h-1024 z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="512"
+                android:startY="0"
+                android:endX="512"
+                android:endY="1280"
+                android:type="linear">
+                <item android:color="@color/kiosk_bg_start" android:offset="0.0"/>
+                <item android:color="@color/kiosk_bg_end" android:offset="1.0"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Wave 1 (Soft background wave) -->
+    <path
+        android:pathData="M0,1100 Q256,1050 512,1120 T1024,1080 V1280 H0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="512"
+                android:startY="1050"
+                android:endX="512"
+                android:endY="1280"
+                android:type="linear">
+                <item android:color="@color/kiosk_wave1_start" android:offset="0.0"/>
+                <item android:color="@color/kiosk_wave1_end" android:offset="1.0"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Wave 2 (Foreground wave) -->
+    <path
+        android:pathData="M0,1150 Q300,1220 600,1160 T1024,1200 V1280 H0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="512"
+                android:startY="1150"
+                android:endX="512"
+                android:endY="1280"
+                android:type="linear">
+                <item android:color="@color/kiosk_wave2_start" android:offset="0.0"/>
+                <item android:color="@color/kiosk_wave2_end" android:offset="1.0"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+</vector>

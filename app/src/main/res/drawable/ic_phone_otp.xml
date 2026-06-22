@@ -1,0 +1,50 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="72dp"
+    android:height="72dp"
+    android:viewportWidth="72"
+    android:viewportHeight="72">
+    <!-- Phone outline -->
+    <path
+        android:pathData="M24,4 H48 C50.2,4 52,5.8 52,8 V64 C52,66.2 50.2,68 48,68 H24 C21.8,68 20,66.2 20,64 V8 C20,5.8 21.8,4 24,4 Z"
+        android:fillColor="#E9F0FA"
+        android:strokeColor="#0A429B"
+        android:strokeWidth="2"/>
+    <!-- Screen lines -->
+    <path
+        android:pathData="M20,12 H52 M20,58 H52"
+        android:strokeColor="#0A429B"
+        android:strokeWidth="1.5"/>
+    <!-- Speaker & Button -->
+    <path
+        android:pathData="M32,8 H40"
+        android:strokeColor="#0A429B"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"/>
+    <path
+        android:pathData="M36,63 A2,2 0 1 0 36,63.1"
+        android:strokeColor="#0A429B"
+        android:strokeWidth="2"/>
+    <!-- OTP Sticker/Badge -->
+    <path
+        android:pathData="M26,24 H46 C48.2,24 50,25.8 50,28 V38 C50,40.2 48.2,42 46,42 H26 C23.8,42 22,40.2 22,38 V28 C22,25.8 23.8,24 26,24 Z"
+        android:fillColor="#0A429B"/>
+    <!-- "OTP" text styled as paths -->
+    <!-- O -->
+    <path
+        android:pathData="M27.5,33 C27.5,30.8 28.5,30 30,30 C31.5,30 32.5,30.8 32.5,33 C32.5,35.2 31.5,36 30,36 C28.5,36 27.5,35.2 27.5,33 Z"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"/>
+    <!-- T -->
+    <path
+        android:pathData="M34,30.7 H38 M36,30.7 V36"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"/>
+    <!-- P -->
+    <path
+        android:pathData="M40.5,36 V30.5 H43 C44.5,30.5 45,31.5 45,33 C45,34.5 44.5,35 43,35 H40.5"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+</vector>

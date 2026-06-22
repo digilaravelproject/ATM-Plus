@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">ATMPlus</string>
+
+    <!-- Welcome Screen -->
+    <string name="welcome_title">Welcome!</string>
+    <string name="select_service">Please select a service</string>
+    <string name="account_opening">Account\nOpening</string>
+    <string name="cheque_deposit">Cheque\nDeposit</string>
+    <string name="home">Home</string>
+    <string name="powered_by">Powered by</string>
+
+    <!-- Aadhaar Screen -->
+    <string name="verify_aadhaar">Verify Aadhaar</string>
+    <string name="enter_aadhaar_desc">Please enter your 12 digit Aadhaar number</string>
+    <string name="aadhaar_number_hint">Aadhaar Number</string>
+
+    <!-- OTP Screen -->
+    <string name="enter_otp">Enter OTP</string>
+    <string name="enter_otp_desc">Please enter the 6 digit OTP sent to\nyour registered mobile number</string>
+    <string name="resend_timer_prefix">Resend OTP in 00:45</string>
+    <string name="resend_timer_format">Resend OTP in 00:%02d</string>
+    <string name="resend_otp_label">Resend OTP</string>
+
+    <!-- Processing Screen -->
+    <string name="processing_confirmed">Your details have been successfully confirmed.</string>
+    <string name="processing_card_msg">Your card is being prepared and will be dispensed shortly.</string>
+    <string name="processing_collect_msg">Please collect your card once it is presented.</string>
+
+    <!-- Success Screen -->
+    <string name="default_user_name">Nikhil Randive</string>
+    <string name="success_desc">Account Opening Request\nhas been received successfully.</string>
+    <string name="secure_info_msg">Your info is secure with us</string>
+
+    <!-- Coming Soon Screen -->
+    <string name="coming_soon_badge">COMING SOON</string>
+    <string name="coming_soon_desc">This service is currently under development.\nWe\'ll notify you when it\'s ready!</string>
+    <string name="cheque_deposit_no_newline">Cheque Deposit</string>
+
+    <!-- Cheque Deposit Screen -->
+    <string name="cheque_deposit_title">Enter Cheque Details</string>
+    <string name="cheque_deposit_desc">Please enter your 15 digit Account number</string>
+    <string name="cheque_account_number_hint">Account Number</string>
+    <string name="continue_btn">Continue</string>
+
+    <!-- Verify Cheque Screen -->
+    <string name="verify_cheque_title">Verify details</string>
+    <string name="verify_cheque_customer_name_label">Customer Name</string>
+    <string name="verify_cheque_customer_name_value">Saurabh Rao</string>
+    <string name="verify_cheque_account_number_label">Account number</string>
+    <string name="verify_cheque_instruction">Click on Insert and deposit the cheque</string>
+    <string name="insert_btn">Insert</string>
+
+    <!-- Common Button Actions -->
+    <string name="submit">Confirm</string>
+    <string name="back">Back</string>
+</resources>

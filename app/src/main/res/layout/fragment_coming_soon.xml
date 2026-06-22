@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_kiosk">
+
+    <!-- Common Background Elements (Plant and Powered By) -->
+    <include layout="@layout/kiosk_background" />
+
+
+
+    <!-- Content Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/content_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.6"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="24dp">
+
+            <!-- Cheque Icon -->
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_cheque"
+                android:contentDescription="Cheque Deposit Icon" />
+
+            <!-- Coming Soon Badge -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="#FF6B00"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="4dp"
+                android:text="@string/coming_soon_badge"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/cheque_deposit_no_newline"
+                android:textColor="@color/primary_blue_dark"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Description -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@string/coming_soon_desc"
+                android:textColor="@color/grey_text"
+                android:textSize="13sp"
+                android:lineSpacingExtra="4dp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Bottom Bar -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:paddingHorizontal="24dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_back_home"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home"
+            android:textColor="@color/primary_blue"
+            app:icon="@drawable/ic_home"
+            app:iconTint="@color/primary_blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/primary_blue"
+            app:strokeWidth="1dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
