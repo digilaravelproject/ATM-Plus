@@ -1,4 +1,4 @@
-package com.atmplus.ui.processing
+package com.atmplus.ui.account.processing
 
 import android.os.Bundle
 import android.view.LayoutInflater

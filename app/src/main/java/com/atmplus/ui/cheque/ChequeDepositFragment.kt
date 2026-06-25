@@ -1,4 +1,4 @@
-package com.atmplus.ui.aadhaar
+package com.atmplus.ui.cheque
 
 import android.os.Bundle
 import android.text.Editable
@@ -6,14 +6,16 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.atmplus.databinding.FragmentAadhaarBinding
+import com.atmplus.databinding.FragmentChequeDepositBinding
+import com.atmplus.model.ScreenState
 import com.atmplus.viewmodel.BankViewModel
 
-class AadhaarFragment : Fragment() {
+class ChequeDepositFragment : Fragment() {
 
-    private var _binding: FragmentAadhaarBinding? = null
+    private var _binding: FragmentChequeDepositBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: BankViewModel by activityViewModels()
@@ -22,55 +24,45 @@ class AadhaarFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAadhaarBinding.inflate(inflater, container, false)
+        _binding = FragmentChequeDepositBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        com.atmplus.utils.AppLogger.i("AadhaarFragment onViewCreated")
+        com.atmplus.utils.AppLogger.i("ChequeDepositFragment onViewCreated")
 
         // Sync text from ViewModel if already exists
-        binding.etAadhaar.setText(viewModel.aadhaarNumber.value)
+        binding.etChequeAccount.setText(viewModel.chequeAccountNumber.value)
 
         // Bind custom keyboard
-        binding.etAadhaar.showSoftInputOnFocus = false
+        binding.etChequeAccount.showSoftInputOnFocus = false
         com.atmplus.ui.KeyboardHelper.bindSingleEditText(
             binding.keyboardContainer.root,
-            binding.etAadhaar
+            binding.etChequeAccount
         )
 
-        binding.etAadhaar.addTextChangedListener(object : TextWatcher {
+        binding.etChequeAccount.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
-                viewModel.setAadhaar(s?.toString() ?: "")
+                viewModel.setChequeAccountNumber(s?.toString() ?: "")
             }
         })
 
-        viewModel.isAadhaarValid.observe(viewLifecycleOwner) { isValid ->
+        viewModel.isChequeValid.observe(viewLifecycleOwner) { isValid ->
             binding.btnSubmit.isEnabled = isValid
             // Visual feedback for enabled/disabled state
             binding.btnSubmit.alpha = if (isValid) 1.0f else 0.5f
         }
 
-        viewModel.aadhaarError.observe(viewLifecycleOwner) { errorMessage ->
-            if (errorMessage != null) {
-                android.widget.Toast.makeText(requireContext(), errorMessage, android.widget.Toast.LENGTH_SHORT).show()
-                // Clear input
-                binding.etAadhaar.setText("")
-                viewModel.setAadhaar("")
-                viewModel.clearAadhaarError()
-            }
-        }
-
         binding.btnSubmit.setOnClickListener {
-            com.atmplus.utils.AppLogger.i("AadhaarFragment - Submit clicked (Aadhaar validated)")
-            viewModel.onAadhaarSubmit()
+            com.atmplus.utils.AppLogger.i("ChequeDepositFragment - Submit/Continue clicked")
+            viewModel.navigateTo(ScreenState.VERIFY_CHEQUE)
         }
 
         binding.btnPrevious.setOnClickListener {
-            com.atmplus.utils.AppLogger.i("AadhaarFragment - Previous/Reset clicked")
+            com.atmplus.utils.AppLogger.i("ChequeDepositFragment - Home clicked")
             viewModel.reset()
         }
     }

@@ -126,7 +126,46 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Card 3: Home -->
+            <!-- Card 3: QR Code Generator -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_qr_code_generator"
+                android:layout_width="@dimen/welcome_card_width"
+                android:layout_height="@dimen/welcome_card_height"
+                android:layout_margin="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_welcome_card"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="@dimen/welcome_card_icon_size"
+                        android:layout_height="@dimen/welcome_card_icon_size"
+                        android:src="@drawable/ic_qr_code" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="@string/qr_code_generator"
+                        android:textColor="@color/primary_blue_dark"
+                        android:textSize="13sp"
+                        android:fontFamily="sans-serif-medium" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card 4: Home -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_home"
                 android:layout_width="@dimen/welcome_card_width"

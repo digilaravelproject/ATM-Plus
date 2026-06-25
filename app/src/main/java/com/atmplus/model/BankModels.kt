@@ -9,6 +9,10 @@ enum class ScreenState {
     COMING_SOON,
     ADDITIONAL_INFO,
     CHEQUE_DEPOSIT,
+    QR_CODE_GENERATOR,
+    QR_CODE_OTP,
+    QR_CODE_INFO,
+    QR_CODE_PROCESSING,
     VERIFY_CHEQUE
 }
 

@@ -1,4 +1,4 @@
-package com.atmplus.ui.cheque_deposit
+package com.atmplus.ui.qr
 
 import android.os.Bundle
 import android.text.Editable
@@ -6,16 +6,15 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.atmplus.databinding.FragmentChequeDepositBinding
+import com.atmplus.databinding.FragmentQrCodeBinding
 import com.atmplus.model.ScreenState
 import com.atmplus.viewmodel.BankViewModel
 
-class ChequeDepositFragment : Fragment() {
+class QrCodeFragment : Fragment() {
 
-    private var _binding: FragmentChequeDepositBinding? = null
+    private var _binding: FragmentQrCodeBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: BankViewModel by activityViewModels()
@@ -24,45 +23,42 @@ class ChequeDepositFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentChequeDepositBinding.inflate(inflater, container, false)
+        _binding = FragmentQrCodeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        com.atmplus.utils.AppLogger.i("ChequeDepositFragment onViewCreated")
+        com.atmplus.utils.AppLogger.i("QrCodeFragment onViewCreated")
 
-        // Sync text from ViewModel if already exists
-        binding.etChequeAccount.setText(viewModel.chequeAccountNumber.value)
-
-        // Bind custom keyboard
-        binding.etChequeAccount.showSoftInputOnFocus = false
+        binding.etQrAccount.showSoftInputOnFocus = false
         com.atmplus.ui.KeyboardHelper.bindSingleEditText(
             binding.keyboardContainer.root,
-            binding.etChequeAccount
+            binding.etQrAccount
         )
 
-        binding.etChequeAccount.addTextChangedListener(object : TextWatcher {
+        binding.etQrAccount.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
-                viewModel.setChequeAccountNumber(s?.toString() ?: "")
+                val account = s?.toString() ?: ""
+                // basic validation for 15 digit account number
+                val isValid = account.length == 15 && account.all { it.isDigit() }
+                binding.btnSubmit.isEnabled = isValid
+                binding.btnSubmit.alpha = if (isValid) 1.0f else 0.5f
             }
         })
-
-        viewModel.isChequeValid.observe(viewLifecycleOwner) { isValid ->
-            binding.btnSubmit.isEnabled = isValid
-            // Visual feedback for enabled/disabled state
-            binding.btnSubmit.alpha = if (isValid) 1.0f else 0.5f
-        }
+        
+        binding.btnSubmit.isEnabled = false
+        binding.btnSubmit.alpha = 0.5f
 
         binding.btnSubmit.setOnClickListener {
-            com.atmplus.utils.AppLogger.i("ChequeDepositFragment - Submit/Continue clicked")
-            viewModel.navigateTo(ScreenState.VERIFY_CHEQUE)
+            com.atmplus.utils.AppLogger.i("QrCodeFragment - Verify clicked")
+            viewModel.navigateTo(ScreenState.QR_CODE_OTP)
         }
 
         binding.btnPrevious.setOnClickListener {
-            com.atmplus.utils.AppLogger.i("ChequeDepositFragment - Home clicked")
+            com.atmplus.utils.AppLogger.i("QrCodeFragment - Home clicked")
             viewModel.reset()
         }
     }

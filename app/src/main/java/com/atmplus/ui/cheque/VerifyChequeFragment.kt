@@ -1,4 +1,4 @@
-package com.atmplus.ui.cheque_deposit
+package com.atmplus.ui.cheque
 
 import android.os.Bundle
 import android.view.LayoutInflater

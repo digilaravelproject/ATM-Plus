@@ -1,4 +1,4 @@
-package com.atmplus.ui.otp
+package com.atmplus.ui.account.otp
 
 import android.os.Bundle
 import android.text.Editable

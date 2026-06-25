@@ -7,15 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.atmplus.databinding.ActivityMainBinding
 import com.atmplus.model.ScreenState
-import com.atmplus.ui.aadhaar.AadhaarFragment
+import com.atmplus.ui.account.aadhaar.AadhaarFragment
 import com.atmplus.ui.comingsoon.ComingSoonFragment
-import com.atmplus.ui.otp.OtpFragment
-import com.atmplus.ui.processing.ProcessingFragment
-import com.atmplus.ui.success.SuccessFragment
+import com.atmplus.ui.account.otp.OtpFragment
+import com.atmplus.ui.account.processing.ProcessingFragment
+import com.atmplus.ui.account.success.SuccessFragment
 import com.atmplus.ui.welcome.WelcomeFragment
-import com.atmplus.ui.additional_info.AdditionalInfoFragment
-import com.atmplus.ui.cheque_deposit.ChequeDepositFragment
-import com.atmplus.ui.cheque_deposit.VerifyChequeFragment
+import com.atmplus.ui.account.additional_info.AdditionalInfoFragment
+import com.atmplus.ui.cheque.ChequeDepositFragment
+import com.atmplus.ui.cheque.VerifyChequeFragment
 import com.atmplus.utils.AppLogger
 import com.atmplus.viewmodel.BankViewModel
 
@@ -118,6 +118,10 @@ class MainActivity : AppCompatActivity() {
                 ScreenState.ADDITIONAL_INFO -> AdditionalInfoFragment()
                 ScreenState.CHEQUE_DEPOSIT -> ChequeDepositFragment()
                 ScreenState.VERIFY_CHEQUE -> VerifyChequeFragment()
+                ScreenState.QR_CODE_GENERATOR -> com.atmplus.ui.qr.QrCodeFragment()
+                ScreenState.QR_CODE_OTP -> com.atmplus.ui.qr.QrCodeOtpFragment()
+                ScreenState.QR_CODE_INFO -> com.atmplus.ui.qr.QrCodeInfoFragment()
+                ScreenState.QR_CODE_PROCESSING -> com.atmplus.ui.qr.QrCodeProcessingFragment()
                 null -> WelcomeFragment()
             }
             navigateToFragment(fragment)

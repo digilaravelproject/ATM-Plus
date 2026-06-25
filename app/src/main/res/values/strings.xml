@@ -6,6 +6,15 @@
     <string name="select_service">Please select a service</string>
     <string name="account_opening">Account\nOpening</string>
     <string name="cheque_deposit">Cheque\nDeposit</string>
+    <string name="qr_code_generator">QR Code\nGenerator</string>
+    <string name="qr_code_generator_title">Generate QR Code</string>
+    <string name="qr_code_generator_desc">Please enter your 15 digit Account number</string>
+    <string name="verify">Verify</string>
+    <string name="print_qr_btn">Print QR</string>
+    <string name="qr_code_info_title">Customer Info</string>
+    <string name="qr_processing_card_msg">Your account QR code is being prepared and will be dispensed shortly.</string>
+    <string name="qr_processing_collect_msg">Please collect your QR code sticker once it is presented.</string>
+    <string name="done_btn">Done</string>
     <string name="home">Home</string>
     <string name="powered_by">Powered by</string>
 

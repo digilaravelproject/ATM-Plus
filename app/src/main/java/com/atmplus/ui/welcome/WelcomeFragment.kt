@@ -41,6 +41,11 @@ class WelcomeFragment : Fragment() {
             viewModel.navigateTo(ScreenState.CHEQUE_DEPOSIT)
         }
 
+        binding.cardQrCodeGenerator.setOnClickListener {
+            com.atmplus.utils.AppLogger.i("WelcomeFragment - QR Code Generator clicked")
+            viewModel.navigateTo(ScreenState.QR_CODE_GENERATOR)
+        }
+
         binding.cardHome.setOnClickListener {
             com.atmplus.utils.AppLogger.i("WelcomeFragment - Home clicked, finishing activity")
             activity?.finish()

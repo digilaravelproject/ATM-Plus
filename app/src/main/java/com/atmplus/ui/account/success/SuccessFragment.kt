@@ -1,4 +1,4 @@
-package com.atmplus.ui.success
+package com.atmplus.ui.account.success
 
 import android.os.Bundle
 import android.view.LayoutInflater

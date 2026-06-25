@@ -178,6 +178,21 @@ class BankViewModel(application: Application) : AndroidViewModel(application) {
                 navigateTo(ScreenState.CHEQUE_DEPOSIT)
                 true
             }
+            ScreenState.QR_CODE_GENERATOR -> {
+                reset()
+                true
+            }
+            ScreenState.QR_CODE_OTP -> {
+                navigateTo(ScreenState.QR_CODE_GENERATOR)
+                true
+            }
+            ScreenState.QR_CODE_INFO -> {
+                navigateTo(ScreenState.QR_CODE_OTP)
+                true
+            }
+            ScreenState.QR_CODE_PROCESSING -> {
+                true // Block back navigation
+            }
         }
     }
 

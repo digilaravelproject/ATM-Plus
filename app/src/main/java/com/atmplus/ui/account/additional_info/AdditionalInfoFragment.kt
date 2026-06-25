@@ -1,4 +1,4 @@
-package com.atmplus.ui.additional_info
+package com.atmplus.ui.account.additional_info
 
 import android.os.Bundle
 import android.view.LayoutInflater
