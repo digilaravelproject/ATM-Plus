@@ -24,6 +24,8 @@ class BankViewModel(application: Application) : AndroidViewModel(application) {
     val chequeAccountNumber = MutableLiveData<String>("")
     val isChequeValid = MutableLiveData<Boolean>(false)
 
+    val qrAccountNumber = MutableLiveData<String>("")
+
     val otpText = MutableLiveData<String>("")
     val isOtpValid = MutableLiveData<Boolean>(false)
     val otpError = MutableLiveData<String?>(null)

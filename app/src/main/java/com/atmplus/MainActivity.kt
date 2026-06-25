@@ -77,6 +77,28 @@ class MainActivity : AppCompatActivity() {
         finish()
     }
 
+    fun onQrValidationComplete() {
+        try {
+            val userName = viewModel.userProfile.value?.name ?: ""
+            val accountNumber = viewModel.qrAccountNumber.value ?: ""
+            val qrDetails = org.json.JSONObject().apply {
+                put("name", userName)
+                put("accountNumber", accountNumber)
+            }
+            AppLogger.d("QR Validation Success. QR Details: $qrDetails")
+
+            val resultIntent = android.content.Intent().apply {
+                putExtra(com.atmplus.utils.AppConstants.EXTRA_STATUS, com.atmplus.utils.AppConstants.STATUS_SUCCESS)
+                putExtra(com.atmplus.utils.AppConstants.EXTRA_RESPONSE_JSON, qrDetails.toString())
+            }
+            setResult(android.app.Activity.RESULT_OK, resultIntent)
+        } catch (e: org.json.JSONException) {
+            AppLogger.e("Failed to create qrDetails JSON: ${e.message}")
+            setResult(android.app.Activity.RESULT_CANCELED)
+        }
+        finish()
+    }
+
     fun finishWithFailure(reason: String) {
         AppLogger.w("Validation Failed. Reason: $reason")
         val resultIntent = android.content.Intent().apply {

@@ -54,6 +54,7 @@ class QrCodeFragment : Fragment() {
 
         binding.btnSubmit.setOnClickListener {
             com.atmplus.utils.AppLogger.i("QrCodeFragment - Verify clicked")
+            viewModel.qrAccountNumber.value = binding.etQrAccount.text.toString()
             viewModel.navigateTo(ScreenState.QR_CODE_OTP)
         }
 

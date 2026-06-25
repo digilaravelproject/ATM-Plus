@@ -37,64 +37,69 @@ If you run the app directly from Android Studio or the Launcher (without sending
 
 ## 3. Screen Flow inside the App
 
-Once launched, the user goes through these steps:
+Once launched, the user sees the **Welcome Screen** featuring 4 main cards. Below are the distinct flows for each card:
 
-### Welcome Screen
-- **Account Opening card** → Navigates to **Aadhaar Screen** (`ScreenState.AADHAAR`)
-- **Cheque Deposit card** → Navigates to **Coming Soon Screen** (`ScreenState.COMING_SOON`)
-- **Home card** → Finishes the activity (exits the app)
+### Flow 1: Account Opening (Card Issuance)
+**Path:** `Welcome Screen -> Account Opening Card`
 
-### Aadhaar Screen
-- **Numeric Keypad (0-9)** → Enters digits into the Aadhaar input field (max 12 digits)
-- **Clear button (C)** → Clears the input field
-- **Delete button (DEL)** → Removes last digit
-- **Home button** (`btn_previous`) → Resets app state and returns to **Welcome Screen**
-- **Confirm button** (`btn_submit`) → If 12 digits entered, navigates to **OTP Screen**
-  - *Disabled (50% alpha) until 12 digits entered*
+1. **Aadhaar Screen** (`ScreenState.AADHAAR`)
+   - **Action:** User enters a 12-digit Aadhaar Number via the keypad.
+   - **Confirm button** → If 12 digits entered, navigates to **OTP Screen**
+2. **OTP Screen** (`ScreenState.OTP`)
+   - **Action:** User enters a 6-digit OTP (mock: `123456`).
+   - **Confirm button** → Validates OTP, fetches user profile data (Name, DOB, etc.), and navigates to **Success Screen**
+3. **Success Screen** (`ScreenState.SUCCESS`)
+   - **Action:** Displays User Profile details from the fetched data.
+   - **Confirm button** → Navigates to **Additional Info Screen**
+4. **Additional Info Screen** (`ScreenState.ADDITIONAL_INFO`)
+   - **Action:** User selects options like Gender, Passbook, Debit Card, etc.
+   - **Confirm button** → Navigates to **Processing Screen**
+5. **Processing Screen** (`ScreenState.PROCESSING`)
+   - **Action:** Displays a 4-second loading spinner.
+   - **Background Process:** Creates `Cardname.txt` in the public **Downloads** folder with the user's name.
+   - **Completion:** Calls `onValidationComplete()` which finishes the activity and returns the **Card Details JSON** (`Activity.RESULT_OK`).
 
-### OTP Screen
-- **Numeric Keypad (0-9)** → Fills OTP digit boxes sequentially (auto-advances focus)
-- **Clear button (C)** → Clears all OTP boxes, focuses first box
-- **Delete button (DEL)** → Clears current box or moves to previous box
-- **Home button** (`btn_previous`) → Goes back to **Aadhaar Screen** (`viewModel.handleBackPress()`)
-- **Confirm button** (`btn_submit`) → If 6 digits entered, validates OTP and fetches user data
-  - *Disabled (50% alpha) until 6 digits entered*
-- **Resend OTP timer** (`tv_timer`) → Counts down from 45s, becomes clickable after expiry
+### Flow 2: Cheque Deposit
+**Path:** `Welcome Screen -> Cheque Deposit Card`
 
-> **Note:** OTP must be exactly `123456`. On submit, mock data is loaded from `mock_data.json`.
+1. **Cheque Deposit Screen** (`ScreenState.CHEQUE_DEPOSIT`)
+   - **Action:** User enters a 15-digit Account Number.
+   - **Confirm button** → Navigates to **Verify Cheque Screen**
+2. **Verify Cheque Screen** (`ScreenState.VERIFY_CHEQUE`)
+   - **Action:** Displays a masked version of the entered account number (e.g., XXXXXXXXXXX1234).
+   - **Insert button** → Checks if the `Cheque Depositor` app is installed. If installed, it launches that app via an Intent (Package Name: `com.example.chequedepositor`) and finishes the `com.atmplus` activity.
 
-### Success Screen
-- Displays User Profile details (name, DOB, mobile, address, city/state/pin) from mock data
-- **User Name shown:** `Nikhil Randive` (from `mock_data.json`, fallback in `strings.xml`)
-- **Profile photo** loaded from URL or drawable resource
-- **Home button** (`btn_back_success`) → Resets app state and returns to **Welcome Screen**
-- **Confirm button** (`btn_previous_success`) → Navigates to **Additional Info Screen**
+### Flow 3: QR Code Generator
+**Path:** `Welcome Screen -> QR Code Generator Card`
 
-### Additional Info Screen
-- **Gender toggle** (Male/Female/Other) — default: Male
-- **Passbook Required?** toggle (Yes/No) — default: No
-- **Debit Card Required?** toggle (Yes/No) — default: No
-- **Internet Banking?** toggle (Yes/No) — default: No
-- **Mobile Banking?** toggle (Yes/No) — default: No
-- **Home button** (`btn_previous`) → Resets app state and returns to **Welcome Screen**
-- **Confirm button** (`btn_submit`) → Navigates to **Processing Screen**
+1. **QR Code Screen** (`ScreenState.QR_CODE_GENERATOR`)
+   - **Action:** User enters a 15-digit Account Number via the keypad.
+   - **Data Navigation:** Account number is saved to `qrAccountNumber` in the ViewModel.
+   - **Confirm button** → Navigates to **QR OTP Screen**
+2. **QR OTP Screen** (`ScreenState.QR_CODE_OTP`)
+   - **Action:** User enters a 6-digit OTP.
+   - **Confirm button** → Navigates to **QR Info Screen**
+3. **QR Info Screen** (`ScreenState.QR_CODE_INFO`)
+   - **Action:** Displays validation success.
+   - **Confirm button** → Navigates to **QR Processing Screen**
+4. **QR Processing Screen** (`ScreenState.QR_CODE_PROCESSING`)
+   - **Action:** Displays a 4-second loading spinner.
+   - **Background Process:** Reads `name` and `accountNumber` from ViewModel. Creates `CardAccountNumber.txt` in the **Downloads** folder containing this data.
+   - **Completion:** Calls `onQrValidationComplete()` which finishes the activity and returns the **QR Details JSON** (`Activity.RESULT_OK`).
 
-### Processing Screen
-- Displays processing messages and a progress spinner
-- After 4 seconds:
-  1. Creates `Cardname.txt` in **Downloads** folder with user's name
-  2. Calls `onValidationComplete()` which finishes the activity and returns result to the parent app
+### Flow 4: Home (Exit)
+**Path:** `Welcome Screen -> Home Card`
 
-### Coming Soon Screen
-- **Home button** (`btn_back_home`) → Resets app state and returns to **Welcome Screen**
+- **Action:** Clicking this immediately finishes the activity.
+- **Completion:** Exits the app with `RESULT_CANCELED`.
 
 ---
 
 ## 4. Returning Data to Parent App (Output Data)
 
-When the user clicks the **Done** button, the app finishes and sends the result back to your app.
+When the user clicks the **Done** button or the flow completes, the `com.atmplus` app finishes and sends the result back to your parent app (which originally called `startActivityForResult`).
 
-### A. When Validation is SUCCESSFUL:
+### A. When Account Opening Validation is SUCCESSFUL:
 * **Result Code:** `Activity.RESULT_OK`
 * **Intent Extras returned:**
   - `status`: `"SUCCESS"` (String)
@@ -104,6 +109,18 @@ When the user clicks the **Done** button, the app finishes and sends the result 
       "name": "Nikhil Randive",
       "cardNumber": "4111111111111111",
       "expiryDate": "12/29"
+    }
+    ```
+
+### B. When QR Code Validation is SUCCESSFUL:
+* **Result Code:** `Activity.RESULT_OK`
+* **Intent Extras returned:**
+  - `status`: `"SUCCESS"` (String)
+  - `response_json`: JSON String containing the name and account number.
+    ```json
+    {
+      "name": "Nikhil Randive",
+      "accountNumber": "123456789012345"
     }
     ```
 
