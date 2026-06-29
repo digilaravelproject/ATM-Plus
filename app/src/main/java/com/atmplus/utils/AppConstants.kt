@@ -28,4 +28,5 @@ object AppConstants {
 
     // Packages
     const val CHEQUE_DEPOSITOR_PACKAGE = "com.example.chequedepositor"
+    const val QR_PRINTER_PACKAGE = "com.example.qrprinter"
 }

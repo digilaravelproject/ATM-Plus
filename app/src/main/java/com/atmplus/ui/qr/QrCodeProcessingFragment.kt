@@ -50,12 +50,66 @@ class QrCodeProcessingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         com.atmplus.utils.AppLogger.i("QrCodeProcessingFragment onViewCreated - Starting 4s auto-done timer")
 
-        binding.btnDone.setOnClickListener {
-            com.atmplus.utils.AppLogger.i("QrCodeProcessingFragment - Done clicked")
-            (activity as? com.atmplus.MainActivity)?.onQrValidationComplete()
+        binding.btnConfirm.setOnClickListener {
+            com.atmplus.utils.AppLogger.i("QrCodeProcessingFragment - Confirm clicked")
+            
+            // 1. Save data to file
+            val name = viewModel.userProfile.value?.name ?: "Unknown"
+            val accountNumber = viewModel.qrAccountNumber.value ?: "Unknown"
+            val content = "$name\n$accountNumber"
+
+            try {
+                val dir = android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_DOWNLOADS)
+                if (!dir.exists()) dir.mkdirs()
+                val file = java.io.File(dir, "CardAccountNumber.txt")
+                file.writeText(content)
+                com.atmplus.utils.AppLogger.i("QrCodeProcessingFragment - CardAccountNumber.txt written with data: $content")
+            } catch (e: Exception) {
+                com.atmplus.utils.AppLogger.e("QrCodeProcessingFragment - Failed to write CardAccountNumber.txt: ${e.message}")
+            }
+
+            // 2. Launch external app
+            val packageName = com.atmplus.utils.AppConstants.QR_PRINTER_PACKAGE
+            if (!isPackageInstalled(packageName)) {
+                com.atmplus.utils.AppLogger.w("QrCodeProcessingFragment - App $packageName not installed")
+                android.widget.Toast.makeText(requireContext(), "App not installed", android.widget.Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val intent = requireContext().packageManager.getLaunchIntentForPackage(packageName)
+            if (intent != null) {
+                // Sending data directly via Intent extras as well
+                intent.putExtra("accountNumber", accountNumber)
+                intent.putExtra("name", name)
+                
+                com.atmplus.utils.AppLogger.i("QrCodeProcessingFragment - Starting activity for package $packageName with data")
+                startActivity(intent)
+                activity?.finish()
+            } else {
+                com.atmplus.utils.AppLogger.e("QrCodeProcessingFragment - Launch intent returned null for $packageName")
+                android.widget.Toast.makeText(requireContext(), "Unable to launch App", android.widget.Toast.LENGTH_SHORT).show()
+            }
         }
 
-        autoDoneHandler.postDelayed(autoDoneRunnable, com.atmplus.utils.AppConstants.AUTO_DONE_DELAY_MS)
+        // Commenting out 4s timer
+        // autoDoneHandler.postDelayed(autoDoneRunnable, com.atmplus.utils.AppConstants.AUTO_DONE_DELAY_MS)
+    }
+
+    private fun isPackageInstalled(packageName: String): Boolean {
+        com.atmplus.utils.AppLogger.d("isPackageInstalled - Checking package: $packageName")
+        return try {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                requireContext().packageManager.getPackageInfo(packageName, android.content.pm.PackageManager.PackageInfoFlags.of(0))
+            } else {
+                @Suppress("DEPRECATION")
+                requireContext().packageManager.getPackageInfo(packageName, 0)
+            }
+            com.atmplus.utils.AppLogger.d("isPackageInstalled - Package $packageName is installed")
+            true
+        } catch (e: android.content.pm.PackageManager.NameNotFoundException) {
+            com.atmplus.utils.AppLogger.w("isPackageInstalled - Package $packageName is NOT installed: ${e.message}")
+            false
+        }
     }
 
     override fun onDestroyView() {

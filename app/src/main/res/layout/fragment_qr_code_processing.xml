@@ -81,14 +81,13 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_done"
+            android:id="@+id/btn_confirm"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:paddingHorizontal="16dp"
-            android:text="@string/done_btn"
+            android:text="Confirm"
             android:textColor="@color/primary_blue"
-            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

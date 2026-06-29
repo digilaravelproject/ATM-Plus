@@ -83,9 +83,15 @@ Once launched, the user sees the **Welcome Screen** featuring 4 main cards. Belo
    - **Action:** Displays validation success.
    - **Confirm button** → Navigates to **QR Processing Screen**
 4. **QR Processing Screen** (`ScreenState.QR_CODE_PROCESSING`)
-   - **Action:** Displays a 4-second loading spinner.
-   - **Background Process:** Reads `name` and `accountNumber` from ViewModel. Creates `CardAccountNumber.txt` in the **Downloads** folder containing this data.
-   - **Completion:** Calls `onQrValidationComplete()` which finishes the activity and returns the **QR Details JSON** (`Activity.RESULT_OK`).
+   - **Action:** Displays processing status and a **Confirm** button.
+   - **Background Process:** Upon clicking "Confirm", it reads `name` and `accountNumber` from the ViewModel. It creates `CardAccountNumber.txt` in the **Downloads** folder containing this data.
+     - **File Format:**
+       Line 1: `Name`
+       Line 2: `Account Number`
+   - **Completion:** Checks if the `QR Printer` app is installed (`com.example.qrprinter`). If installed, it launches that app via an Intent and finishes the `com.atmplus` activity.
+     - **Intent Extras Passed:**
+       - `"name"`: String (e.g., "Nikhil Randive")
+       - `"accountNumber"`: String (e.g., "123456789012345")
 
 ### Flow 4: Home (Exit)
 **Path:** `Welcome Screen -> Home Card`
@@ -109,18 +115,6 @@ When the user clicks the **Done** button or the flow completes, the `com.atmplus
       "name": "Nikhil Randive",
       "cardNumber": "4111111111111111",
       "expiryDate": "12/29"
-    }
-    ```
-
-### B. When QR Code Validation is SUCCESSFUL:
-* **Result Code:** `Activity.RESULT_OK`
-* **Intent Extras returned:**
-  - `status`: `"SUCCESS"` (String)
-  - `response_json`: JSON String containing the name and account number.
-    ```json
-    {
-      "name": "Nikhil Randive",
-      "accountNumber": "123456789012345"
     }
     ```
 

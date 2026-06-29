@@ -6,7 +6,7 @@
     <string name="select_service">Please select a service</string>
     <string name="account_opening">Account\nOpening</string>
     <string name="cheque_deposit">Cheque\nDeposit</string>
-    <string name="qr_code_generator">QR Code\nGenerator</string>
+    <string name="qr_code_generator">Generate\nQR Code</string>
     <string name="qr_code_generator_title">Generate QR Code</string>
     <string name="qr_code_generator_desc">Please enter your 15 digit Account number</string>
     <string name="verify">Verify</string>
