@@ -80,6 +80,27 @@
         android:paddingHorizontal="24dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
+        <!-- Home Button on left -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_back"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:paddingHorizontal="8dp"
+            android:text="@string/home"
+            android:textColor="@color/primary_blue"
+            android:textSize="15sp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/ic_home"
+            app:iconTint="@color/primary_blue"
+            app:iconGravity="textStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/primary_blue"
+            app:strokeWidth="1.5dp" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_confirm"
             style="@style/Widget.Material3.Button.OutlinedButton"

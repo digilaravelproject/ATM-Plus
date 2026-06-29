@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.atmplus.databinding.FragmentQrCodeProcessingBinding
 import com.atmplus.viewmodel.BankViewModel
 import com.atmplus.model.ScreenState
+import com.atmplus.utils.AppConstants
 
 class QrCodeProcessingFragment : Fragment() {
 
@@ -50,6 +52,11 @@ class QrCodeProcessingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         com.atmplus.utils.AppLogger.i("QrCodeProcessingFragment onViewCreated - Starting 4s auto-done timer")
 
+        binding.btnBack.setOnClickListener {
+            com.atmplus.utils.AppLogger.i("QrCodeProcessingFragment - Home clicked")
+            viewModel.reset()
+        }
+
         binding.btnConfirm.setOnClickListener {
             com.atmplus.utils.AppLogger.i("QrCodeProcessingFragment - Confirm clicked")
             
@@ -69,25 +76,24 @@ class QrCodeProcessingFragment : Fragment() {
             }
 
             // 2. Launch external app
-            val packageName = com.atmplus.utils.AppConstants.QR_PRINTER_PACKAGE
-            if (!isPackageInstalled(packageName)) {
-                com.atmplus.utils.AppLogger.w("QrCodeProcessingFragment - App $packageName not installed")
+            if (!isPackageInstalled(AppConstants.QR_PRINTER_PACKAGE)) {
+                com.atmplus.utils.AppLogger.w("QrCodeProcessingFragment - QR Printer app not installed")
                 android.widget.Toast.makeText(requireContext(), "QR Printer app not installed", android.widget.Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val intent = requireContext().packageManager.getLaunchIntentForPackage(packageName)
+            val intent = requireContext().packageManager.getLaunchIntentForPackage(AppConstants.QR_PRINTER_PACKAGE)
             if (intent != null) {
                 // Sending data directly via Intent extras as well
                 intent.putExtra("accountNumber", accountNumber)
                 intent.putExtra("name", name)
                 
-                com.atmplus.utils.AppLogger.i("QrCodeProcessingFragment - Starting activity for package $packageName with data")
+                com.atmplus.utils.AppLogger.i("QrCodeProcessingFragment - Starting activity for package with data")
                 startActivity(intent)
                 activity?.finish()
             } else {
-                com.atmplus.utils.AppLogger.e("QrCodeProcessingFragment - Launch intent returned null for $packageName")
-                android.widget.Toast.makeText(requireContext(), "Unable to launch QR Printer", android.widget.Toast.LENGTH_SHORT).show()
+                com.atmplus.utils.AppLogger.e("QrCodeProcessingFragment - Launch intent returned null for ${AppConstants.QR_PRINTER_PACKAGE}")
+                Toast.makeText(requireContext(), "Unable to launch QR Printer", Toast.LENGTH_SHORT).show()
             }
         }
 
