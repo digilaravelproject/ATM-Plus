@@ -72,7 +72,7 @@ class QrCodeProcessingFragment : Fragment() {
             val packageName = com.atmplus.utils.AppConstants.QR_PRINTER_PACKAGE
             if (!isPackageInstalled(packageName)) {
                 com.atmplus.utils.AppLogger.w("QrCodeProcessingFragment - App $packageName not installed")
-                android.widget.Toast.makeText(requireContext(), "App not installed", android.widget.Toast.LENGTH_SHORT).show()
+                android.widget.Toast.makeText(requireContext(), "QR Printer app not installed", android.widget.Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -87,7 +87,7 @@ class QrCodeProcessingFragment : Fragment() {
                 activity?.finish()
             } else {
                 com.atmplus.utils.AppLogger.e("QrCodeProcessingFragment - Launch intent returned null for $packageName")
-                android.widget.Toast.makeText(requireContext(), "Unable to launch App", android.widget.Toast.LENGTH_SHORT).show()
+                android.widget.Toast.makeText(requireContext(), "Unable to launch QR Printer", android.widget.Toast.LENGTH_SHORT).show()
             }
         }
 
