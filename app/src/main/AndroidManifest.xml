@@ -9,6 +9,7 @@
     <queries>
         <package android:name="com.thirdparty.validator" />
         <package android:name="com.example.chequedepositor" />
+        <package android:name="com.example.qrprinter" />
     </queries>
 
     <application
